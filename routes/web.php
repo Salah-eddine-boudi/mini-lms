@@ -16,7 +16,6 @@ Route::get('/dashboard', function () {
     }
     return redirect()->route('apprenant.dashboard');
 })->middleware(['auth'])->name('dashboard');
-
 // =============================================
 // ROUTES ADMIN
 // =============================================
@@ -28,6 +27,8 @@ Route::middleware(['auth', 'role:admin'])
         Route::get('/dashboard', [AdminDashboard::class, 'index'])->name('dashboard');
 
         Route::resource('formations', \App\Http\Controllers\Admin\FormationController::class);
+        Route::resource('chapitres', \App\Http\Controllers\Admin\ChapitreController::class);
+        Route::resource('sous-chapitres', \App\Http\Controllers\Admin\SousChapitreController::class);
     });
 
 // =============================================
