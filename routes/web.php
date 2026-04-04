@@ -27,7 +27,7 @@ Route::middleware(['auth', 'role:admin'])
 
         Route::get('/dashboard', [AdminDashboard::class, 'index'])->name('dashboard');
 
-        // Les autres routes admin viendront ici plus tard
+        Route::resource('formations', \App\Http\Controllers\Admin\FormationController::class);
     });
 
 // =============================================
