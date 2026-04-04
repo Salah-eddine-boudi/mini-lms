@@ -29,6 +29,11 @@ Route::middleware(['auth', 'role:admin'])
         Route::resource('formations', \App\Http\Controllers\Admin\FormationController::class);
         Route::resource('chapitres', \App\Http\Controllers\Admin\ChapitreController::class);
         Route::resource('sous-chapitres', \App\Http\Controllers\Admin\SousChapitreController::class);
+        Route::resource('apprenants', \App\Http\Controllers\Admin\ApprenantController::class);
+
+        // Routes supplémentaires pour les inscriptions
+        Route::get('/apprenants/{apprenant}/enrollments', [\App\Http\Controllers\Admin\ApprenantController::class, 'enrollments'])->name('apprenants.enrollments');
+        Route::put('/apprenants/{apprenant}/enrollments', [\App\Http\Controllers\Admin\ApprenantController::class, 'updateEnrollments'])->name('apprenants.updateEnrollments');
     });
 
 // =============================================
