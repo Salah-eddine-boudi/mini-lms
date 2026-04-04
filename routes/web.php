@@ -1,20 +1,46 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\DashboardController as AdminDashboard;
+use App\Http\Controllers\Apprenant\DashboardController as ApprenantDashboard;
 
+// Page d'accueil
 Route::get('/', function () {
     return view('welcome');
 });
 
+// Redirection après connexion selon le rôle
 Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+    if (auth()->user()->isAdmin()) {
+        return redirect()->route('admin.dashboard');
+    }
+    return redirect()->route('apprenant.dashboard');
+})->middleware(['auth'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
+// =============================================
+// ROUTES ADMIN
+// =============================================
+Route::middleware(['auth', 'role:admin'])
+    ->prefix('admin')
+    ->name('admin.')
+    ->group(function () {
+
+        Route::get('/dashboard', [AdminDashboard::class, 'index'])->name('dashboard');
+
+        // Les autres routes admin viendront ici plus tard
+    });
+
+// =============================================
+// ROUTES APPRENANT
+// =============================================
+Route::middleware(['auth', 'role:apprenant'])
+    ->prefix('apprenant')
+    ->name('apprenant.')
+    ->group(function () {
+
+        Route::get('/dashboard', [ApprenantDashboard::class, 'index'])->name('dashboard');
+
+        // Les autres routes apprenant viendront ici plus tard
+    });
 
 require __DIR__.'/auth.php';
