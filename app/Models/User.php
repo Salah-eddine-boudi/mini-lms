@@ -11,12 +11,7 @@ class User extends Authenticatable
     use HasFactory, Notifiable;
 
     protected $fillable = [
-        'name',
-        'nom',
-        'prenom',
-        'email',
-        'password',
-        'role',
+        'name', 'nom', 'prenom', 'email', 'password', 'role',
     ];
 
     protected $hidden = [
@@ -32,15 +27,28 @@ class User extends Authenticatable
         ];
     }
 
-    // Vérifie si l'utilisateur est admin
     public function isAdmin(): bool
     {
         return $this->role === 'admin';
     }
 
-    // Vérifie si l'utilisateur est apprenant
     public function isApprenant(): bool
     {
         return $this->role === 'apprenant';
+    }
+
+    public function formations()
+    {
+        return $this->belongsToMany(Formation::class)->withPivot('enrolled_at');
+    }
+
+    public function notes()
+    {
+        return $this->hasMany(Note::class);
+    }
+
+    public function quizResults()
+    {
+        return $this->hasMany(QuizResult::class);
     }
 }
