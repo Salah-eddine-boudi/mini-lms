@@ -13,19 +13,16 @@ class Quiz extends Model
 
     protected $fillable = ['titre', 'description', 'sous_chapitre_id'];
 
-    // Un quiz appartient à un sous-chapitre
     public function sousChapitre()
     {
         return $this->belongsTo(SousChapitre::class);
     }
 
-  
     public function questions()
     {
         return $this->hasMany(Question::class)->orderBy('ordre');
     }
 
-   
     public function results()
     {
         return $this->hasMany(QuizResult::class);

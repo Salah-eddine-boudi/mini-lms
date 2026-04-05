@@ -13,7 +13,6 @@ class SousChapitre extends Model
 
     protected $fillable = ['titre', 'contenu', 'ordre', 'chapitre_id'];
 
-    
     public function chapitre()
     {
         return $this->belongsTo(Chapitre::class);

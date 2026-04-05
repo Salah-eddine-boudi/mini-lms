@@ -11,19 +11,16 @@ class Question extends Model
 
     protected $fillable = ['texte', 'ordre', 'quiz_id'];
 
-    
     public function quiz()
     {
         return $this->belongsTo(Quiz::class);
     }
-
 
     public function reponses()
     {
         return $this->hasMany(Reponse::class);
     }
 
-    
     public function bonneReponse()
     {
         return $this->hasOne(Reponse::class)->where('is_correct', true);

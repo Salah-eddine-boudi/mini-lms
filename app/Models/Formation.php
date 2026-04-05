@@ -11,7 +11,6 @@ class Formation extends Model
 
     protected $fillable = ['nom', 'description', 'niveau', 'duree'];
 
-    
     public function chapitres()
     {
         return $this->hasMany(Chapitre::class)->orderBy('ordre');

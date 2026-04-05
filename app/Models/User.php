@@ -37,19 +37,16 @@ class User extends Authenticatable
         return $this->role === 'apprenant';
     }
 
-   
     public function formations()
     {
         return $this->belongsToMany(Formation::class)->withPivot('enrolled_at');
     }
 
-    
     public function notes()
     {
         return $this->hasMany(Note::class);
     }
 
-    
     public function quizResults()
     {
         return $this->hasMany(QuizResult::class);
