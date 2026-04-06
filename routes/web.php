@@ -46,6 +46,9 @@ Route::middleware(['auth', 'role:admin'])
         // Routes import contenu IA
         Route::get('/sous-chapitres/{sousChapitre}/import', [\App\Http\Controllers\Admin\ImportController::class, 'show'])->name('import.show');
         Route::post('/sous-chapitres/{sousChapitre}/import', [\App\Http\Controllers\Admin\ImportController::class, 'store'])->name('import.store');
+        // Routes import quiz IA
+        Route::get('/sous-chapitres/{sousChapitre}/import-quiz', [\App\Http\Controllers\Admin\ImportController::class, 'showQuiz'])->name('import.quiz');
+        Route::post('/sous-chapitres/{sousChapitre}/import-quiz', [\App\Http\Controllers\Admin\ImportController::class, 'storeQuiz'])->name('import.storeQuiz');
     });
 
 // =============================================

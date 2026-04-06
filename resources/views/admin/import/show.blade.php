@@ -24,7 +24,7 @@
                 🤖 Importer du contenu généré par IA
             </h3>
             <p class="text-gray-500 text-sm mb-4">
-                Collez ici le contenu pédagogique généré par ChatGPT ou un autre outil d'IA. Le contenu peut être en HTML ou en texte simple.
+                Collez ici le contenu pédagogique généré par ChatGPT ou un autre outil d'IA.
             </p>
 
             {{-- Instructions --}}
@@ -42,8 +42,8 @@
             <div class="bg-gray-50 border border-gray-200 rounded-lg p-4 mb-6">
                 <h4 class="font-medium text-gray-700 mb-2">📋 Exemple de prompt à utiliser :</h4>
                 <p class="text-gray-600 text-sm italic">
-                    "Génère un contenu pédagogique en HTML sur le thème '{{ $sousChapitre->titre }}'. 
-                    Utilise des balises h2, h3, p, ul, li et table pour structurer le contenu. 
+                    "Génère un contenu pédagogique en HTML sur le thème '{{ $sousChapitre->titre }}'.
+                    Utilise des balises h2, h3, p, ul, li et table pour structurer le contenu.
                     Le texte doit être clair, simple et adapté à un niveau {{ $sousChapitre->chapitre->formation->niveau }}."
                 </p>
             </div>
