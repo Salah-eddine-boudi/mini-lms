@@ -1,100 +1,171 @@
-# Mini LMS Pédagogique
+# 🎓 Mini LMS pédagogique – Laravel
 
-Mini plateforme LMS développée en Laravel permettant la gestion de formations, chapitres, sous-chapitres, contenus pédagogiques, quiz et notes.
+## 📌 Description
 
-## Stack technique
+Ce projet est une **application web de type LMS (Learning Management System)** développée avec Laravel.
+Il permet de gérer du contenu pédagogique structuré, des quiz et le suivi des résultats des apprenants.
 
-- Laravel 11 / PHP 8.3
-- SQLite
-- Blade + Tailwind CSS
-- Laravel Breeze (authentification)
-- PHPUnit (tests)
+L’objectif est de proposer une plateforme simple, cohérente et démontrable, proche d’un cas réel dans le domaine de la formation.
 
-## Installation
+---
 
-### Prérequis
-- PHP 8.2+
-- Composer
-- Node.js 18+
+## 🚀 Fonctionnalités principales
 
-### Étapes
+### 👨‍🏫 Administrateur / Formateur
+
+* Gestion des formations (CRUD)
+* Organisation du contenu :
+
+  * Chapitres
+  * Sous-chapitres
+* Ajout de contenu pédagogique (texte / HTML)
+* Création de quiz :
+
+  * Questions à choix multiple
+  * Une seule bonne réponse
+* Visualisation des résultats des apprenants
+
+### 👨‍🎓 Apprenant
+
+* Accès aux formations
+* Consultation des contenus pédagogiques
+* Passage des quiz
+* Calcul automatique du score
+* Consultation des résultats
+
+---
+
+## 🧠 Exemple intégré
+
+Un module pédagogique complet est inclus :
+
+**Les verbes irréguliers en anglais**
+
+* Chapitres et sous-chapitres
+* Contenu pédagogique
+* Quiz avec plusieurs questions
+
+---
+
+## 🏗️ Architecture technique
+
+* **Framework** : Laravel 11
+* **Langage** : PHP 8.3
+* **Base de données** : SQLite (par défaut)
+* **Frontend** : Blade + Bootstrap
+* **Authentification** : Laravel Breeze
+* **Architecture** : MVC (Model – View – Controller)
+
+---
+
+## 🔐 Gestion des rôles
+
+Deux types d’utilisateurs :
+
+* `admin` → accès complet à la gestion
+* `apprenant` → accès limité (lecture + quiz)
+
+Middleware utilisé :
+
+```php
+CheckRole
+```
+
+---
+
+## 🗂️ Structure du projet
+
+* `app/Models` → modèles Eloquent
+* `app/Http/Controllers/Admin` → logique admin
+* `app/Http/Controllers/Apprenant` → logique apprenant
+* `resources/views/admin` → interfaces admin
+* `resources/views/apprenant` → interfaces apprenant
+* `database/migrations` → structure base de données
+* `database/seeders` → données de démonstration
+
+---
+
+## ⚙️ Installation
+
+### 1. Cloner le projet
+
 ```bash
 git clone https://github.com/Salah-eddine-boudi/mini-lms.git
 cd mini-lms
+```
+
+### 2. Installer les dépendances
+
+```bash
 composer install
-npm install && npm run build
+npm install
+```
+
+### 3. Configuration
+
+```bash
 cp .env.example .env
 php artisan key:generate
-touch database/database.sqlite
-php artisan migrate:fresh --seed
+```
+
+### 4. Base de données
+
+```bash
+php artisan migrate --seed
+```
+
+### 5. Lancer le projet
+
+```bash
 php artisan serve
 ```
 
-Ouvrir http://localhost:8000
+---
 
-## Identifiants de démo
+## 🔑 Comptes de test
 
-| Rôle | Email | Mot de passe |
-|------|-------|-------------|
-| Admin | admin@lms.fr | password |
-| Apprenant | apprenant1@lms.fr | password |
-| Apprenant | apprenant2@lms.fr | password |
-| Apprenant | apprenant3@lms.fr | password |
+### 👨‍🏫 Admin
 
-## Fonctionnalités
+* Email : `admin@test.com`
+* Mot de passe : `password`
 
-### Admin
-- CRUD formations, chapitres, sous-chapitres
-- CRUD quiz avec questions à choix multiples
-- Gestion des apprenants et inscriptions aux formations
-- Saisie et gestion des notes
-- Dashboard avec statistiques
-- Import de contenu pédagogique (compatible IA)
+### 👨‍🎓 Apprenant
 
-### Apprenant
-- Consultation des formations et contenus
-- Navigation hiérarchique (Formation > Chapitre > Sous-chapitre)
-- Passage de quiz avec calcul de score automatique
-- Consultation des notes et résultats
+* Email : `apprenant@test.com`
+* Mot de passe : `password`
 
-## Contenu de démo
+---
 
-Le seeder inclut un module complet sur **les verbes irréguliers en anglais** avec :
-- 3 chapitres, 5 sous-chapitres
-- Contenu HTML pédagogique riche
-- 2 quiz (15 questions au total)
-- Notes et résultats de démo
+## 🧪 Améliorations possibles
 
-## Structure du projet
-app/
-├── Http/
-│   ├── Controllers/
-│   │   ├── Admin/          (6 contrôleurs)
-│   │   └── Apprenant/      (4 contrôleurs)
-│   ├── Middleware/
-│   │   └── CheckRole.php
-│   └── Requests/Admin/     (Form Requests)
-├── Models/                  (9 modèles)
-database/
-├── migrations/              (13 migrations)
-├── seeders/
-resources/views/
-├── layouts/                 (2 layouts distincts)
-├── admin/                   (vues admin)
-└── apprenant/               (vues apprenant)
+* Ajout de tests unitaires et fonctionnels
+* Limitation du nombre de tentatives de quiz
+* Interface utilisateur améliorée (UX/UI)
+* Ajout de statistiques avancées
+* API REST pour mobile / frontend React
 
-## Auteur
+---
 
-Salah-Eddine Boudi
+## 💡 Objectifs du projet
 
-## Code of Conduct
+* Structurer une application Laravel complète
+* Implémenter une logique métier réaliste
+* Gérer des relations complexes (formations, quiz, résultats)
+* Créer une application démontrable rapidement
+* Intégrer du contenu pédagogique généré par IA
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+---
 
-## Security Vulnerabilities
+## 👨‍💻 Auteur
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+**Salah Eddine Boudi**
+Étudiant en Master 1 – Développement Logiciel
+JUNIA ISEN Lille
 
-## License
+* 💼 LinkedIn : https://www.linkedin.com/in/salah-eddine-boudi-b26b59252
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+---
+
+## ⭐ Conclusion
+
+Ce projet démontre la capacité à développer une application full-stack en Laravel, en respectant une logique métier claire, une architecture propre et une expérience utilisateur fonctionnelle.
