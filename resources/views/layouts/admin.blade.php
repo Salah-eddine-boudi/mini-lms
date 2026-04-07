@@ -54,6 +54,11 @@
                       {{ request()->routeIs('admin.notes.*') ? 'bg-blue-600 text-white' : 'text-gray-300 hover:bg-gray-800' }}">
                 <span class="mr-3">📝</span> Notes
             </a>
+
+            <a href="{{ route('profile.edit') }}"
+               class="flex items-center px-4 py-3 rounded-lg transition text-gray-300 hover:bg-gray-800">
+                <span class="mr-3">👤</span> Profil
+            </a>
         </nav>
 
         {{-- Utilisateur --}}
@@ -70,8 +75,19 @@
     {{-- CONTENU PRINCIPAL --}}
     <div class="ml-64 flex-1">
         {{-- Header --}}
-        <header class="bg-white shadow-sm p-6">
+        <header class="bg-white shadow-sm p-6 flex items-center justify-between">
             <h2 class="text-2xl font-bold text-gray-800">@yield('title', 'Dashboard')</h2>
+            <div class="flex items-center gap-2">
+                <img
+                    src="{{ auth()->user()->avatar_url }}"
+                    alt="Avatar"
+                    width="40"
+                    height="40"
+                    class="rounded-full border"
+                    style="object-fit: cover;"
+                >
+                <span class="text-gray-700 font-medium">{{ auth()->user()->name }}</span>
+            </div>
         </header>
 
         {{-- Messages flash --}}
@@ -97,3 +113,6 @@
 
 </body>
 </html>
+
+
+

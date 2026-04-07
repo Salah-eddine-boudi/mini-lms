@@ -11,7 +11,7 @@ class User extends Authenticatable
     use HasFactory, Notifiable;
 
     protected $fillable = [
-        'name', 'nom', 'prenom', 'email', 'password', 'role',
+        'name', 'nom', 'prenom', 'email', 'password', 'role','avatar',
     ];
 
     protected $hidden = [
@@ -51,4 +51,16 @@ class User extends Authenticatable
     {
         return $this->hasMany(QuizResult::class);
     }
+
+
+
+
+    public function getAvatarUrlAttribute(): string
+{
+    if ($this->avatar) {
+        return asset('storage/' . $this->avatar);
+    }
+
+    return asset('images/default-avatar.png');
+}
 }
