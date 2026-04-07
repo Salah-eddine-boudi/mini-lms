@@ -60,12 +60,10 @@
         <div class="p-4 border-t border-gray-700">
             <p class="text-sm text-gray-400">Connecté :</p>
             <p class="text-white font-medium">{{ Auth::user()->prenom }} {{ Auth::user()->nom }}</p>
-            <form method="POST" action="{{ route('logout') }}" class="mt-2">
-                @csrf
-                <button type="submit" class="text-red-400 hover:text-red-300 text-sm">
-                    🚪 Déconnexion
-                </button>
-            </form>
+            <button onclick="openLogoutModal()"
+                    class="mt-2 text-red-400 hover:text-red-300 text-sm transition">
+                🚪 Déconnexion
+            </button>
         </div>
     </aside>
 
@@ -94,6 +92,8 @@
             @yield('content')
         </main>
     </div>
+
+     @include('components.logout-modal')
 
 </body>
 </html>

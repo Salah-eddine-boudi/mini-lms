@@ -39,12 +39,10 @@
                     <a href="{{ Route::has('profile.edit') ? route('profile.edit') : '#' }}" class="text-gray-600 hover:text-emerald-600 transition">
                         👤 {{ Auth::user()->prenom }}
                     </a>
-                    <form method="POST" action="{{ route('logout') }}">
-                        @csrf
-                        <button type="submit" class="text-red-500 hover:text-red-400 text-sm transition">
-                            Déconnexion
-                        </button>
-                    </form>
+                    <button onclick="openLogoutModal()"
+                            class="text-red-500 hover:text-red-400 text-sm transition">
+                        Déconnexion
+                    </button>
                 </div>
             </div>
         </div>
@@ -74,6 +72,6 @@
     <footer class="bg-white border-t mt-12 py-6 text-center text-gray-400 text-sm">
         Mini LMS © {{ date('Y') }} — Plateforme pédagogique
     </footer>
-
+              @include('components.logout-modal')
 </body>
 </html>
